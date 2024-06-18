@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Choice Tutor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 0;
+        }
+        nav {
+            background-color: #343a40;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 10px 20px;
+        }
+        .navbar-toggler {
+            display: none;
+        }
+        .logo img {
+            width: 116px;
+        }
+        .logo .mob {
+            display: none;
+        }
+        .navbar-nav {
+            display: flex;
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .navbar-nav li {
+            margin: 0 10px;
+        }
+        .navbar-nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 5px 10px;
+        }
+        .navbar-nav .cta-btn {
+            display: flex;
+            align-items: center;
+        }
+        .btnSec button, .btnSec a {
+            margin-right: 10px;
+        }
+        .btnSec span {
+            color: #fff;
+        }
+        .bannerSec {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+        }
+        .bannerSec .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .bannerSec .registop h1 {
+            margin-top: 0;
+        }
+        .regidform {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .regidform h3 {
+            text-align: center;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .radioBtn {
+            display: flex;
+        }
+        .radioBtn .radioLogin {
+            flex: 1;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .radioBtn .radioLogin.active-btn {
+            background-color: #343a40;
+            color: #fff;
+        }
+        .term-Condition {
+            display: flex;
+            align-items: center;
+        }
+        .term-Condition input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .regSub button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .fb-btn, .google-btn {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+        .haveAnAccount {
+            text-align: center;
+        }
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+        }
+        footer .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        footer h5 {
+            margin-top: 0;
+        }
+        footer ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        footer ul a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer ul a li {
+            margin-bottom: 5px;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 10px 0;
+        }
+        .contactDetail img {
+            margin-right: 10px;
+        }
+        .social img {
+            width: 24px;
+            margin-right: 10px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.4);
+        }
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 600px;
+        }
+        .modal-header {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="https://mychoicetutor.com/frontendnew/img/logo-mtc.png" alt="">
+            </a>
+            <a class="mob" href="tel:07761 975326">
+                <i class="fa fa-phone" style="color:black;"></i>
+                <span style="color:rgb(247, 91, 91)">07761 975326</span>
+            </a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <img src="https://mychoicetutor.com/frontendnew/img/icons/menu-01.png" alt="">
+        </div>
+        <div class="menu">
+            <ul class="menu-list">
+                <li><a href="/findatutor">Find a tutor</a></li>
+                <li><a href="/subjects">Subjects</a></li>
+                <li><a href="/aboutus">Why choose us?</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/howitworks">How it works</a></li>
+           
+                <li class="cta-btn">
+                    <div class="btnSec">
+                        <button onclick="openModal()" style="color:rgb(36, 30, 30); background-color: white !important;">Login</button>
+                        <a href="/student/register" style="color:white;">Become a tutor</a>
+                        <span>En <i class="fa fa-angle-down"></i></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form class="modal-form" id="loginForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+
+                <div class="radio-group">
+                    <input type="radio" id="student" name="role" value="student">
+                    <label for="student">Student</label>
+                    
+                    <input type="radio" id="tutor" name="role" value="tutor">
+                    <label for="tutor">Tutor</label>
+                </div>
+
+                <button type="button" class="submit-button" onclick="submitForm()">Submit</button>
+                <button type="button" class="cancel-button" onclick="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <section class="bannerSec tutBann">
+        <div class="container" style="position:relative;">
+            <div class="registop">
+                <h1>Become a tutor <br> share your passion!</h1>
+                <img src="https://mychoicetutor.com/frontendnew/img/registrationImg.png" alt="">
+                <p class="charcol">"Become a tutor with us and share your knowledge to inspire and educate students worldwide. <br><br>Enjoy the flexibility of setting your own schedule, competitive earnings, and the satisfaction of making a difference in learners' lives." <br><br>Join our community of passionate educators today!</p>
+            </div>
+            <div class="regidform" style="position: absolute;
+                margin-left: 843px;  width: 335px;">
+                <h3 class="text-center mt-4">To Register with us fill out the following</h3>
+                <form action="https://mychoicetutor.com/student/register" method="POST">
+                    <input type="hidden" name="_token" value="AbWiK0ykuoYP18fIfZsDCsfK3PPZ8lKztWlwCFdV" autocomplete="off">
+                    <div class="form-group">
+                        <label for="name">Full Name:<span class="reqrd">*</span></label>
+                        <input type="text" id="name" name="name" placeholder="Your name" value="">
+                        <span class="text-danger error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email:<span class="reqrd">*</span></label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" value="">
+                        <span class="text-danger error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="number">Mobile:<span class="reqrd">*</span></label>
+                        <input type="number" id="mobile" name="mobile" placeholder="Your mobile number" value="">
+                        <span class="text-danger error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Create password:<span class="reqrd">*</span></label>
+                        <input type="password" id="password" name="password" placeholder="• • • • • • • •">
+                        <span class="text-danger error-message"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Retype password:<span class="reqrd">*</span></label>
+                        <input type="password" id="confpassword" name="confpassword" placeholder="• • • • • • • •">
+                        <span class="text-danger error-message"></span>
+                    </div>
+                    <p>Register as<span class="reqrd">*</span></p>
+                    <div class="radioBtn">
+                        <div class="radioLogin student active-btn">
+                            <input type="radio" value="student" name="registerAs" id="student" checked>
+                            <span>Student</span>
+                        </div>
+                        <div class="radioLogin tutor">
+                            <input type="radio" value="tutor" name="registerAs" id="tutor">
+                            <span>Tutor</span>
+                        </div>
+                    </div>
+                    <div class="term-Condition">
+                        <input type="checkbox" id="expcheck" name="expcheck">
+                        <span>I have read and agree to all <a href="#">Terms &amp; conditions</a></span>
+                    </div>
+                    <span class="text-danger error-message"></span>
+                    <div class="regSub">
+                        <button type="submit" class="btn btn-lg">Create</button>
+                    </div>
+                    <div class="fb-btn">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/facebook-icon.png" alt="">
+                        <span>Sign up with Facebook</span>
+                    </div>
+                    <div class="google-btn">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/google-logo.png" alt="">
+                        <span>Sign up with Google</span>
+                    </div>
+                    <div class="haveAnAccount">
+                        <p>Already have an account <a href="#" data-toggle="modal" data-target="#loginPopup"><u>Login now</u></a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="loginPopup" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" data-dismiss="modal">&times;</span>
+            </div>
+            <h3 class="text-center">Login</h3>
+            <form class="loginForm" action="https://mychoicetutor.com/student-login" method="GET">
+                <input type="hidden" name="_token" value="AbWiK0ykuoYP18fIfZsDCsfK3PPZ8lKztWlwCFdV" autocomplete="off">
+                <div class="form-group">
+                    <label for="number">Mobile Number</label>
+                    <input type="number" id="username" name="username" placeholder="Your Number">
+                </div>
+                <span class="text-danger login-errorMessage"></span>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password">
+                </div>
+                <span class="text-danger login-errorMessage"></span>
+                <p class="mt-3">Login as</p>
+                <div class="radioBtn">
+                    <div class="radioLogin student active-btn">
+                        <input type="radio" value="student" name="loginAs" id="student" checked>
+                        <span>Student</span>
+                    </div>
+                    <div class="radioLogin tutor">
+                        <input type="radio" value="tutor" name="loginAs" id="tutor">
+                        <span>Tutor</span>
+                    </div>
+                    <div class="radioLogin parents">
+                        <input type="radio" value="parents" name="loginAs" id="parents">
+                        <span>Parents</span>
+                    </div>
+                </div>
+                <span class="text-danger login-errorMessage"></span>
+                <hr>
+                <button type="submit" class="btn brand-bg-Color mb-3">Login</button>
+                <a href="#">
+                    <div class="googleLogin">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/google-logo.png" alt="">
+                        <span>Sign in with Google</span>
+                    </div>
+                </a>
+                <div class="forgotPwd mt-3">
+                    <p> Don't have an account? <a href="/student/register" class="register">Register</a></p>
+                    <a href="#">Forgot password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footerArea" style="    margin-top: 171px;;">
+       
+        <div class="footer-bottom" id="main-footer">
+            <p>Copyright © 2024 MyChoiceTutor. All rights reserved.</p>
+        </div>
+    </footer>
+
+   
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const studentRadio = document.getElementById('student');
+            const tutorRadio = document.getElementById('tutor');
+            const studentDiv = document.querySelector('.student');
+            const tutorDiv = document.querySelector('.tutor');
+
+            function switchActiveClass() {
+                if (studentRadio.checked) {
+                    studentDiv.classList.add('active-btn');
+                    tutorDiv.classList.remove('active-btn');
+                } else if (tutorRadio.checked) {
+                    tutorDiv.classList.add('active-btn');
+                    studentDiv.classList.remove('active-btn');
+                }
+            }
+
+            studentRadio.addEventListener('change', switchActiveClass);
+            tutorRadio.addEventListener('change', switchActiveClass);
+        });
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const studentRadio = document.getElementById('student');
+            const tutorRadio = document.getElementById('tutor');
+            const parentsRadio = document.getElementById('parents');
+            const studentDiv = document.querySelector('.student');
+            const tutorDiv = document.querySelector('.tutor');
+            const parentsDiv = document.querySelector('.parents');
+
+            function switchActiveClass() {
+                studentDiv.classList.remove('active-btn');
+                tutorDiv.classList.remove('active-btn');
+                parentsDiv.classList.remove('active-btn');
+
+                if (studentRadio.checked) {
+                    studentDiv.classList.add('active-btn');
+                } else if (tutorRadio.checked) {
+                    tutorDiv.classList.add('active-btn');
+                } else if (parentsRadio.checked) {
+                    parentsDiv.classList.add('active-btn');
+                }
+            }
+
+            studentRadio.addEventListener('change', switchActiveClass);
+            tutorRadio.addEventListener('change', switchActiveClass);
+            parentsRadio.addEventListener('change', switchActiveClass);
+        });
+    </script>
+
+<script>
+    function toggleMenu() {
+        document.querySelector('.menu-list').classList.toggle('show');
+    }
+
+    function openModal() {
+        document.getElementById("myModal").style.display = "block";
+    }
+
+    function closeModal() {
+        document.getElementById("myModal").style.display = "none";
+    }
+
+    function submitForm() {
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const role = document.querySelector('input[name="role"]:checked').value;
+        alert(`Name: ${name}\nEmail: ${email}\nRole: ${role}`);
+        closeModal();
+    }
+
+    // Close the modal when the user clicks on <span> (x)
+    document.querySelector('.close').onclick = function() {
+        closeModal();
+    }
+
+    // Close the modal when the user clicks anywhere outside of the modal
+    window.onclick = function(event) {
+        if (event.target == document.getElementById("myModal")) {
+            closeModal();
+        }
+    }
+</script>
+</body>
+</html>
+

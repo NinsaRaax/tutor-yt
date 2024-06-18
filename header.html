@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/header.css" />
+    <title>Document</title>
+    <style>
+       
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="https://mychoicetutor.com/frontendnew/img/logo-mtc.png" alt="">
+            </a>
+            <a class="mob" href="tel:07761 975326">
+                <i class="fa fa-phone" style="color:black;"></i>
+                <span style="color:rgb(247, 91, 91)">07761 975326</span>
+            </a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <img src="https://mychoicetutor.com/frontendnew/img/icons/menu-01.png" alt="">
+        </div>
+        <div class="menu">
+            <ul class="menu-list">
+                <li><a href="/findatutor">Find a tutor</a></li>
+                <li><a href="/subjects">Subjects</a></li>
+                <li><a href="/aboutus">Why choose us?</a></li>
+                <li><a href="/resources">Resources</a></li>
+                <li><a href="/howitworks">How it works</a></li>
+           
+                <li class="cta-btn">
+                    <div class="btnSec">
+                        <button onclick="openModal()" style="color:rgb(36, 30, 30); background-color: white !important;">Login</button>
+                        <a href="/student/register" style="color:white;">Become a tutor</a>
+                        <span>En <i class="fa fa-angle-down"></i></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form class="modal-form" id="loginForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+
+                <div class="radio-group">
+                    <input type="radio" id="student" name="role" value="student">
+                    <label for="student">Student</label>
+                    
+                    <input type="radio" id="tutor" name="role" value="tutor">
+                    <label for="tutor">Tutor</label>
+                </div>
+
+                <button type="button" class="submit-button" onclick="submitForm()">Submit</button>
+                <button type="button" class="cancel-button" onclick="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.menu-list').classList.toggle('show');
+        }
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function submitForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const role = document.querySelector('input[name="role"]:checked').value;
+            alert(`Name: ${name}\nEmail: ${email}\nRole: ${role}`);
+            closeModal();
+        }
+
+        // Close the modal when the user clicks on <span> (x)
+        document.querySelector('.close').onclick = function() {
+            closeModal();
+        }
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>

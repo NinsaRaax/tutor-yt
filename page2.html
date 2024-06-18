@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/footer.css" />
+    <link rel="stylesheet" href="css/header.css" />
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .overlayMTC {
+            padding: 40px;
+            background-color: #f5f5f5;
+        }
+
+        .tutorHeader {
+            text-align: center;
+        }
+
+        .tutorHeader h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .findtutor-btns {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .findtutor-btns select {
+            width: 150px;
+            border-radius: 60px;
+            border: 0;
+            padding: 10px;
+        }
+
+        .search-tutor {
+            border-radius: 60px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .advance-search {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e9ecef;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .advance-search span a {
+            display: flex;
+            align-items: center;
+        }
+
+        .advance-search img {
+            margin-right: 10px;
+        }
+
+        .collapseAdvSearch {
+            display: none;
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ced4da;
+            margin-bottom: 10px;
+        }
+
+        .advSearchBtns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .advSearchBtns .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .cancelBtn {
+            background-color: #6c757d;
+            color: white;
+        }
+
+        .applyBtn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .subSec ul {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 50px;
+            padding: 0;
+            list-style: none;
+            overflow-x: auto;
+        }
+
+        .subSec li {
+            flex: 0 0 auto;
+            text-align: center;
+        }
+
+        .subSec li a {
+            text-decoration: none;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .subSec li a img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .subSec li a p {
+            margin-top: 5px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .subSec li a img {
+                width: 30px;
+                height: 30px;
+            }
+
+            .subSec li a p {
+                font-size: 12px;
+            }
+        }
+
+        .advSearchForm {
+        max-width: 600px; /* Decrease the form width */
+        margin: 0 auto; /* Center the form horizontally */
+        padding: 20px; /* Add padding around the form */
+        background-color: #f7f7f7; /* Optional: Add a light background color */
+        border: 1px solid #ddd; /* Optional: Add a border */
+        border-radius: 5px; /* Optional: Add rounded corners */
+    }
+
+    .form-group {
+        margin-bottom: 15px; /* Add margin between form groups */
+    }
+
+    .row {
+        margin-bottom: 15px; /* Add margin between rows */
+    }
+
+    .col {
+        padding-right: 10px; /* Add padding between columns */
+        padding-left: 10px; /* Add padding between columns */
+    }
+
+    .advSearchBtns button {
+        margin-right: 10px; /* Add margin between buttons */
+    }
+
+    /* Optional: Style the form elements */
+    input[type="text"],
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+    .applyBtn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .cancelBtn {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 10px;
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .my-list li a img {
+    transition: box-shadow 0.3s ease;
+}
+
+/* Define shadow effect on hover */
+.my-list li a:hover img {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Adjust the shadow values as needed */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.tutor-section {
+    padding: 40px 0;
+    background-color: #f5f5f5;
+}
+
+.tutor-card h4 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tutorCol {
+    width: calc(25% - 20px);
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.tutorDetails {
+    text-align: center;
+}
+
+.tutorImg img {
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.star {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.star span {
+    margin-right: 5px;
+}
+
+.name {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.name p {
+    font-size: 14px;
+    color: #999;
+    margin-top: 5px;
+}
+
+.desc-tutor {
+    color: #666;
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+.expMore {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.testimonial-sec {
+    padding: 40px 0;
+    background-color: #f5f5f5;
+}
+
+.topheader h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.col-lg-3, .col-md-3, .col-sm-12, .col-xs-12 {
+    width: calc(25% - 20px); /* Adjust based on your layout needs */
+}
+
+.testi-card {
+    background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    text-align: center;
+}
+
+.nameTo {
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.nameTo p {
+    font-size: 14px;
+    color: #666;
+    margin-top: 5px;
+}
+
+.fa-star {
+    color: gold;
+}
+
+.mt-4 {
+    margin-top: 1.5rem;
+}
+
+.nameFrom {
+    margin-top: 1rem;
+    color: #999;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 16px;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+}
+
+/* Custom container for how cards */
+.how-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Adjust as needed */
+}
+
+/* Custom styles for individual how cards */
+.how-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    max-width: 300px; /* Adjust width as needed */
+    width: 100%;
+}
+
+/* Media query for responsiveness */
+@media (min-width: 768px) {
+    .how-card {
+        max-width: calc(33.33% - 20px); /* Adjust for 3 cards per row */
+    }
+}
+
+/* Example of card-specific styling */
+.card1 {
+    /* Custom styles */
+}
+
+.card2 {
+    /* Custom styles */
+}
+
+.card3 {
+    /* Custom styles */
+}
+
+/* Example CSS for styling */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.bgs {
+    background-image:url();
+}
+
+.tutor-banner {
+  
+    background-image:url(data:image/jpeg;base64,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);
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    width: 100%;
+    height: 500px;
+    background-size: cover;
+    border-radius: 20px;
+    padding: 50px;
+    margin-bottom: 60px;
+}
+
+/* .rightside {
+    background-color: #ffffff;
+    border-radius: 20px;
+    padding: 80px 50px;
+} */
+
+.rightside {
+    max-width: 200px;
+}
+
+.rightside h2 {
+    font-size: 32px; /* Decreased font size for better fit */
+    margin-bottom: 10px; /* Adjusted margin for spacing */
+    line-height: 1.4; /* Increased line height for readability */
+}
+
+
+
+
+/* .rightside h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+} */
+
+.rightside button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 18px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.rightside button:hover {
+    background-color: #0056b3;
+}
+.float {
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    bottom: 120px;
+    right: 20px;
+    background-color: #25d366;
+    color: #FFF;
+    border-radius: 50px;
+    text-align: center;
+    font-size: 30px;
+    box-shadow: 2px 2px 3px #999;
+    z-index: 100;
+}
+
+    </style>
+    <title>Discover the perfect tutor for you</title>
+</head>
+
+
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/">
+                <img src="https://mychoicetutor.com/frontendnew/img/logo-mtc.png" alt="">
+            </a>
+            <a class="mob" href="tel:07761 975326">
+                <i class="fa fa-phone" style="color:black;"></i>
+                <span style="color:rgb(247, 91, 91)">07761 975326</span>
+            </a>
+        </div>
+        <div class="menu-icon" onclick="toggleMenu()">
+            <img src="https://mychoicetutor.com/frontendnew/img/icons/menu-01.png" alt="">
+        </div>
+        <div class="menu">
+            <ul class="menu-list">
+                <li><a href="page1.html">Find a tutor</a></li>
+                <li><a href="page2.html">Subjects</a></li>
+                <li><a href="page3.html">Why choose us?</a></li>
+                <li><a href="page4.html">Resources</a></li>
+                <li><a href="page5.html">How it works</a></li>
+           
+                <li class="cta-btn">
+                    <div class="btnSec">
+                        <button onclick="openModal()" style="color:rgb(36, 30, 30); background-color: white !important;">Login</button>
+                        <a href="/student/register" style="color:white;">Become a tutor</a>
+                        <span>En <i class="fa fa-angle-down"></i></span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <form class="modal-form" id="loginForm">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name">
+    
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+    
+                <div class="radio-group">
+                    <input type="radio" id="student" name="role" value="student">
+                    <label for="student">Student</label>
+                    
+                    <input type="radio" id="tutor" name="role" value="tutor">
+                    <label for="tutor">Tutor</label>
+                </div>
+    
+                <button type="button" class="submit-button" onclick="submitForm()">Submit</button>
+                <button type="button" class="cancel-button" onclick="closeModal()">Cancel</button>
+            </form>
+        </div>
+    </div>
+    <div class="overlayMTC">
+        <div class="tutorHeader">
+            <h1>Discover the perfect tutor for you</h1>
+            <form action="https://mychoicetutor.com/toptutorsearch" method="POST">
+                <input type="hidden" name="_token" value="AbWiK0ykuoYP18fIfZsDCsfK3PPZ8lKztWlwCFdV" autocomplete="off">
+                <div class="findtutor-btns">
+                    <select id="subject" name="subject">
+                        <option value="">Select a subject</option>
+                        <option value="1">Maths</option>
+                        <option value="2">English</option>
+                        <option value="3">Social Science</option>
+                        <option value="4">French</option>
+                        <option value="5">Science</option>
+                        <option value="6">Computer</option>
+                        <option value="8">French</option>
+                        <option value="9">Test</option>
+                    </select>
+                    <select id="grade" name="grade">
+                        <option value="">Select a grade</option>
+                        <option value="6">Class VI</option>
+                        <option value="10">Class X</option>
+                        <option value="11">Grade XI</option>
+                        <option value="13">University</option>
+                        <option value="14">GCSE</option>
+                        <option value="15">A Level</option>
+                        <option value="16">Scottish Advanced Higher</option>
+                        <option value="17">11 Plus</option>
+                        <option value="18">13 Plus</option>
+                        <option value="19">National 4 and 5</option>
+                        <option value="20">GCSEs</option>
+                        <option value="21
+                        >IB</option>
+                        <option value="22">KS2</option>
+                        <option value="23">KS3</option>
+                        <option value="24">Scottish Highers</option>
+                    </select>
+                    <button type="submit" class="search-tutor">Search</button>
+                </div>
+            </form>
+
+            <div class="advance-search" onclick="toggleAdvancedSearch()" style="background-color:white; border-radius:20px;">
+                <a href="#" style="text-decoration: none;">Find the tutor of your choice use advance search</a>
+                <span style="padding-left:50px;">
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/magnifire.png" alt="">
+                        Advance Search
+                    </a>
+                </span>
+            </div>
+
+            <div id="collapseTwo" class="collapseAdvSearch">
+                <form class="advSearchForm" action="https://mychoicetutor.com/advancesearch" method="POST">
+                    <input type="hidden" name="_token" value="AbWiK0ykuoYP18fIfZsDCsfK3PPZ8lKztWlwCFdV" autocomplete="off">
+                    <div class="form-group">
+                        <input type="text" placeholder="Search" name="name">
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject">
+                                <option value="">Select a subject</option>
+                                <option value="1">Maths</option>
+                                <option value="2">English</option>
+                                <option value="3">Social Science</option>
+                                <option value="4">French</option>
+                                <option value="5">Science</option>
+                                <option value="6">Computer</option>
+                                <option value="8">French</option>
+                                <option value="9">Test</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="grade">Grade</label>
+                            <select id="grade" name="grade">
+                                <option value="">Select a grade</option>
+                                <option value="6">Class VI</option>
+                                <option value="10">Class X</option>
+                                <option value="11">Grade XI</option>
+                                <option value="13">University</option>
+                                <option value="14">GCSE</option>
+                                <option value="15">A Level</option>
+                                <option value="16">Scottish Advanced Higher</option>
+                                <option value="17">11 Plus</option>
+                                <option value="18">13 Plus</option>
+                                <option value="19">National 4 and 5</option>
+                                <option value="20">GCSEs</option>
+                                <option value="21">IB</option>
+                                <option value="22">KS2</option>
+                                <option value="23">KS3</option>
+                                <option value="24">Scottish Highers</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <label for="ratings">Rating</label>
+                            <select class="rating" id="ratings" name="ratings">
+                                <option value="">5 Star ★★★★★</option>
+                                <option value="">4 Star ★★★★</option>
+                                <option value="">3 Star ★★★</option>
+                                <option value="">2 Star ★★</option>
+                                <option value="">1 Star ★</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label for="country">Country</label>
+                            <select id="country" name="country">
+                                <option value="">Select Country</option>
+                                <option value="1">India</option>
+                                <option value="2">USA</option>
+                                <option value="3">UK</option>
+                                <option value="4">Pakistan</option>
+                                <option value="5">Qatar</option>
+                            </select>
+                        </div>
+                        <div class="col">
+                            <div class="advSearchBtns">
+                                <button class="cancelBtn" type="button" onclick="toggleAdvancedSearch()">Cancel</button>
+                                <button type="submit" class="applyBtn">Apply</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="subSec" style="background-color:white; border-radius: 20px;     margin-top: 40px;">
+            <ul style="padding-top:20px;      padding-left: 7px;" class="my-list">
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/board-math.png" alt="" >
+                        <p>Maths</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/book-03.png" alt="">
+                        <p>English</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/chemistry-03.png" alt="">
+                        <p>Chemistry</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/physics.png" alt="">
+                        <p>Physics</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/geology-crust.png" alt="">
+                        <p>Biology</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/submerge.png" alt="">
+                        <p>Science</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/translation.png" alt="">
+                        <p>Spanish</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/translation.png" alt="">
+                        <p>French</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/translation.png" alt="">
+                        <p>German</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/text-creation.png" alt="">
+                        <p>History</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/music-note-03.png" alt="">
+                        <p>Music</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/global-education.png" alt="">
+                        <p>Psychology</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <img src="https://mychoicetutor.com/frontendnew/img/icons/school-tie.png" alt="">
+                        <p>Politics</p>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+   
+
+
+    <a href="https://api.whatsapp.com/send?phone=51955081075&amp;text=Hola%21%20Quisiera%20m%C3%A1s%20informaci%C3%B3n%20sobre%20Varela%202." class="float" target="_blank">
+        <i class="fa-brands fa-whatsapp" style="    padding-top: 25%;"></i>
+        </a>
+
+    <footer class="footerArea">
+        <div class="container">
+            <div class="row">
+                <div class="col col-3">
+                    <h5>Quick Links</h5>
+                    <ul>
+                        <a href="page1.html"><li>About us</li></a>
+                        <a href="page2.html"><li>Who we are</li></a>
+                        <a href="page3.html"><li>Find Tutor</li></a>
+                        <a href="page4.html"><li>Subjects</li></a>
+                        <a href="page5.html"><li>Contact Us</li></a>
+                        <a href="#"><li>Privacy Policy</li></a>
+                        <a href="#"><li>Terms and Conditions</li></a>
+                    </ul>
+                </div>
+
+                <div class="col col-3">
+                    <h5>Popular Subjects</h5>
+                    <ul>
+                        <li>Psychology</li>
+                        <li>Biology</li>
+                        <li>Business Studies</li>
+                        <li>Chemistry</li>
+                        <li>Computer Science</li>
+                        <li>English Language</li>
+                        <li>French</li>
+                        <li>German</li>
+                        <li>History</li>
+                        <li>Mathematics</li>
+                        <li>Physics</li>
+                    </ul>
+                </div>
+
+                <div class="col col-3">
+                    <h5>Follow us</h5>
+                    <ul class="contactDetail">
+                        <li><i class="fa-brands fa-whatsapp"></i>&nbsp;07761 975326</li>
+                        <li><i class="fa fa-phone" style="color:black;" padding-right="9px !important;"></i>&nbsp;07761 975326</li>
+                        <li><i class="fa-solid fa-envelope"></i>&nbsp;info@mychoicetutor.com</li>
+                    </ul>
+
+                    <div class="social" style="    margin-top: 50px;">
+                        <a href="#"><i class="fa-brands fa-facebook" style="font-size: 30px;"></i></a>
+                        <a href="#"><i class="fa-brands fa-youtube" style="font-size: 30px; padding: 20px;
+                        "></i></a>
+                        <a href="#"><i class="fa-brands fa-square-instagram" style="font-size: 30px;"></i></a>
+                    </div>
+                </div>
+
+                <div class="col col-3">
+                    <h5>Help</h5>
+                    <ul>
+                        <li>Help Center</li>
+                        <li>Contact Us</li>
+                    </ul>
+
+                    <div class="social" style="    margin-top: 50px;">
+                        <img src="https://mychoicetutor.com/frontendnew/img/footer-logo.png" width="160px" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom" id="main-footer">
+            <p>Copyright © 2024 MyChoiceTutor. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.querySelector('.menu-list').classList.toggle('show');
+        }
+
+        function openModal() {
+            document.getElementById("myModal").style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+
+        function submitForm() {
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const role = document.querySelector('input[name="role"]:checked').value;
+            alert(`Name: ${name}\nEmail: ${email}\nRole: ${role}`);
+            closeModal();
+        }
+
+        // Close the modal when the user clicks on <span> (x)
+        document.querySelector('.close').onclick = function() {
+            closeModal();
+        }
+
+        // Close the modal when the user clicks anywhere outside of the modal
+        window.onclick = function(event) {
+            if (event.target == document.getElementById("myModal")) {
+                closeModal();
+            }
+        }
+    </script>
+    
+    
+    <script>
+        function toggleAdvancedSearch() {
+            var advSearch = document.getElementById('collapseTwo');
+            if (advSearch.style.display === 'none' || advSearch.style.display === '') {
+                advSearch.style.display = 'block';
+            } else {
+                advSearch.style.display = 'none';
+            }
+        }
+    </script>
+</body>
+
+</html>
